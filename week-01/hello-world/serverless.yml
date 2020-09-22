@@ -1,0 +1,47 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: hello-world-sjb
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  StackTags:
+    Application: Senzo
+    Service: ${self:service}
+  tags:
+    Application: Senzo
+    Service: ${self:service}
+
+functions:
+    hello:
+      handler: handler.hello
+      description: this function says ello! 
+      events:
+          - http:
+              path: /hello
+              method: get
+    goodbye:
+      handler: handler.goodbye
+      description: this function says goodbye :(
+      events:
+          - http:
+              path: /goodbye
+              method: get
